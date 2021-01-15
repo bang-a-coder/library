@@ -8,6 +8,7 @@ const formUploadButton = document.querySelector(`#form-upload`)
 const titleField = document.querySelector(`#title-input`)
 const authorField = document.querySelector(`#author-input`)
 const pagesField = document.querySelector(`#pages-input`)
+const readField = document.querySelector(`.read-input`)
 
 addButtons.forEach(element => element.addEventListener(`click`, function () {   // Toggle Form
     console.log(`clicked`)
@@ -54,16 +55,34 @@ function createBookVisual(book){
     let pg = document.createElement(`div`)
         pg.classList.add(`pages`)
         pg.innerHTML += book.pages + ` pages`
+
+    let rdStatus = document.createElement(`input`)
+        rdStatus.classList.add(`readit`)
+        rdStatus.id = `c2`
+        rdStatus.type = `checkbox`
+        rdStatus.checked = (book.read) ? true : false
+
+
+
+    let rdStatusLabel = document.createElement(`label`)
+        rdStatusLabel.htmlFor = `c2`
+        rdStatusLabel.classList.add(`readit-label`)
+        rdStatusLabel.innerHTML = `I have read it`
+
     
     frame.appendChild(ttl)
     frame.appendChild(auth)
     frame.appendChild(pg)
+    frame.appendChild(rdStatus)
+    frame.appendChild(rdStatusLabel)
+
 
     libraryDaddy.appendChild(frame)
 }
 
 function createNewBook() {
-    let newBook = new Book(`${titleField.value}`, `${authorField.value}`, pagesField.value)
+
+    let newBook = new Book(`${titleField.value}`, `${authorField.value}`, pagesField.value, readField.checked)
     return newBook
 }
 
