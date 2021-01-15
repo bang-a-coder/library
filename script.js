@@ -11,22 +11,12 @@ const pagesField = document.querySelector(`#pages-input`)
 const readField = document.querySelector(`.read-input`)
 
 addButtons.forEach(element => element.addEventListener(`click`, function () {   // Toggle Form
-    console.log(`clicked`)
-    if (formPopUp.style.display === "none") {
-        formPopUp.style.display = "block";
-    } else {
-        formPopUp.style.display = "none";
-    }
+    (formPopUp.style.display === "none") ? formPopUp.style.display = "block" : formPopUp.style.display = "none";
 }
 ))
 
 formCloseButton.addEventListener(`click`, function () {                         // Toggle Form
-    console.log(`clicked`)
-    if (formPopUp.style.display === "none" || formPopUp.style.display === "") {
-        formPopUp.style.display = "block";
-    } else {
-        formPopUp.style.display = "none";
-    }
+    (formPopUp.style.display === "none") ? formPopUp.style.display = "block" : formPopUp.style.display = "none";
 }
 )
 
@@ -62,26 +52,21 @@ function createBookVisual(book){
         rdStatus.type = `checkbox`
         rdStatus.checked = (book.read) ? true : false
 
-
-
     let rdStatusLabel = document.createElement(`label`)
         rdStatusLabel.htmlFor = `c2`
         rdStatusLabel.classList.add(`readit-label`)
         rdStatusLabel.innerHTML = `I have read it`
 
-    
     frame.appendChild(ttl)
     frame.appendChild(auth)
     frame.appendChild(pg)
     frame.appendChild(rdStatus)
     frame.appendChild(rdStatusLabel)
 
-
     libraryDaddy.appendChild(frame)
 }
 
 function createNewBook() {
-
     let newBook = new Book(`${titleField.value}`, `${authorField.value}`, pagesField.value, readField.checked)
     return newBook
 }
