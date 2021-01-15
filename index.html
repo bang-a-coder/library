@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta id="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     
     
@@ -13,21 +13,26 @@
         <h1>Pit o' Wisdom</h1>
     </div>
 
-    <div class="upload-button">Add</div>
+    <div class="upload-button noselect">Add</div>
 
     <div class="library-daddy">
         <div class="book">
-            <div class="book-title">Harry Potter</div>
-            <div class="author">R.K. Rowling</div>
-            <div class="pages">420</div>
+            <div class="book-title">Harry Potter adfa adsf a adsf </div>
+            <div class="author">by R.K. Rowling</div>
+            <div class="pages">420 pages</div>
         </div>
-        <div class="book"></div>
-        <div class="book"></div>
-        <div class="book"></div>
-        <div class="book"></div>
-        <div class="book"></div>
-        <div class="book"></div>
-        <div class="book"></div>
+
+    </div>
+
+    <div class="form-popup">
+        <div class="close-btn">&times;</div>
+        <input type="text" id="title-input" class="form-field" placeholder="Title">
+        <input type="text" id="author-input" class="form-field" placeholder="Author">
+        <input type="text" id="pages-input" class="form-field" placeholder="Pages">
+        <input id="c2" type="checkbox" checked>
+        <label for="c2">I have read it</label>
+        <div class="upload-button noselect" id="form-upload">Add</div>
+
     </div>
     
     <script src="script.js"></script>
