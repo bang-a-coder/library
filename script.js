@@ -2,13 +2,15 @@ const addButtons = document.querySelectorAll(`.upload-button`)
 const libraryDaddy = document.querySelector(`.library-daddy`)
 
 const formPopUp = document.querySelector(`.form-popup`)
-const formCloseButton = document.querySelector(`.close-btn`)
+const formCloseButton = document.querySelector(`#form-close-btn`)
 const formUploadButton = document.querySelector(`#form-upload`)
 
 const titleField = document.querySelector(`#title-input`)
 const authorField = document.querySelector(`#author-input`)
 const pagesField = document.querySelector(`#pages-input`)
 const readField = document.querySelector(`.read-input`)
+
+const deleteButton = document
 
 addButtons.forEach(element => element.addEventListener(`click`, function () {   // Toggle Form
     (formPopUp.style.display === "none") ? formPopUp.style.display = "block" : formPopUp.style.display = "none";
@@ -22,6 +24,7 @@ formCloseButton.addEventListener(`click`, function () {                         
 
 
 let library = []
+let index = -1
 
 function Book(title, author, pages, read) {
     this.title = title
@@ -33,6 +36,7 @@ function Book(title, author, pages, read) {
 function createBookVisual(book){
     let frame = document.createElement(`div`)
         frame.classList.add(`book`)
+        frame.dataset.index = index
 
     let ttl = document.createElement(`div`)
         ttl.classList.add(`book-title`)
@@ -72,6 +76,7 @@ function createNewBook() {
 }
 
 function addBookToLibrary(book) {
+    index++
     library.push(book)
     createBookVisual(book)
 }
