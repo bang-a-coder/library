@@ -108,3 +108,10 @@ window.addEventListener(`keydown`, function(e){
         toggleForm()
     }
 })
+
+// function Bibliteque(){
+//     this.books = []
+//     this.add = function(){
+//         this.book.push
+//     }
+// }
