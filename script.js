@@ -17,8 +17,23 @@ function toggleForm() {
 addButtons.forEach(element => element.addEventListener(`click`, toggleForm))
 formCloseButton.addEventListener(`click`, toggleForm)
 
+formUploadButton.addEventListener(`click`, execute)
+
 let library = []
 let index = 0
+
+function Biblioteque() {
+    this.bookcase = []
+    this.add = function(book) {
+        this.bookcase.push(book)
+    },
+    this.remove = function
+}
+
+let libraryOfDreams = new Biblioteque
+
+
+
 
 function Book(title, author, pages, read, indexVal) {
     this.title = title
@@ -74,21 +89,19 @@ function createBookVisual(book){
     libraryDaddy.appendChild(frame)
 }
 
-function createNewBook() {
-    let newBook = new Book(`${titleField.value}`, `${authorField.value}`, pagesField.value, readField.checked, index)
-    return newBook
-}
-
 function addBookToLibrary(book) {
     library.push(book)
     createBookVisual(book)
 }
 
-formUploadButton.addEventListener(`click`, execute)
 
 function execute() {
     index++
-    addBookToLibrary(createNewBook())
+    let newBook = new Book(`${titleField.value}`, `${authorField.value}`, pagesField.value, readField.checked, index)
+
+    addBookToLibrary(newBook)
+    libraryOfDreams.add(newBook)
+
     titleField.value = ''
     pagesField.value = ''
     authorField.value = ''
@@ -109,9 +122,3 @@ window.addEventListener(`keydown`, function(e){
     }
 })
 
-// function Bibliteque(){
-//     this.books = []
-//     this.add = function(){
-//         this.book.push
-//     }
-// }
