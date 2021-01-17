@@ -10,7 +10,7 @@ const authorField = document.querySelector(`#author-input`)
 const pagesField = document.querySelector(`#pages-input`)
 const readField = document.querySelector(`.read-input`)
 
-const deleteButton = document
+
 
 addButtons.forEach(element => element.addEventListener(`click`, function () {   // Toggle Form
     (formPopUp.style.display === "none") ? formPopUp.style.display = "block" : formPopUp.style.display = "none";
@@ -22,15 +22,15 @@ formCloseButton.addEventListener(`click`, function () {                         
 }
 )
 
-
 let library = []
-let index = -1
+let index = 0
 
-function Book(title, author, pages, read) {
+function Book(title, author, pages, read, indexVal) {
     this.title = title
     this.author = author
     this.pages = pages
     this.read = read
+    this.indexVal = indexVal
 }
 
 function createBookVisual(book){
@@ -61,29 +61,45 @@ function createBookVisual(book){
         rdStatusLabel.classList.add(`readit-label`)
         rdStatusLabel.innerHTML = `I have read it`
 
+    let dltButton = document.createElement(`div`)
+        dltButton.classList.add(`close-btn`)
+        dltButton.innerHTML = `&times;`
+        dltButton.dataset.index = index
+        dltButton.addEventListener(`click`, function(e){
+            remove((e.target.attributes[`data-index`].nodeValue))
+        })  
+
     frame.appendChild(ttl)
     frame.appendChild(auth)
     frame.appendChild(pg)
     frame.appendChild(rdStatus)
     frame.appendChild(rdStatusLabel)
+    frame.appendChild(dltButton)
 
     libraryDaddy.appendChild(frame)
 }
 
 function createNewBook() {
-    let newBook = new Book(`${titleField.value}`, `${authorField.value}`, pagesField.value, readField.checked)
+    let newBook = new Book(`${titleField.value}`, `${authorField.value}`, pagesField.value, readField.checked, index)
     return newBook
 }
 
 function addBookToLibrary(book) {
-    index++
     library.push(book)
     createBookVisual(book)
 }
 
 formUploadButton.addEventListener(`click`, function(){
+    index++
     addBookToLibrary(createNewBook())
     titleField.value = ''
     pagesField.value = ''
     authorField.value = ''
 })
+
+function remove(idxVal) {
+    library = library.filter(item => item.indexVal != idxVal)
+
+    let ripDaddy = document.querySelector(`div[data-index="${idxVal}"]`);
+    ripDaddy.parentElement.removeChild(ripDaddy)
+}
