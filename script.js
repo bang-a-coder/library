@@ -10,17 +10,12 @@ const authorField = document.querySelector(`#author-input`)
 const pagesField = document.querySelector(`#pages-input`)
 const readField = document.querySelector(`.read-input`)
 
-
-
-addButtons.forEach(element => element.addEventListener(`click`, function () {   // Toggle Form
+function toggleForm() {
     (formPopUp.style.display === "none") ? formPopUp.style.display = "block" : formPopUp.style.display = "none";
 }
-))
 
-formCloseButton.addEventListener(`click`, function () {                         // Toggle Form
-    (formPopUp.style.display === "none") ? formPopUp.style.display = "block" : formPopUp.style.display = "none";
-}
-)
+addButtons.forEach(element => element.addEventListener(`click`, toggleForm))
+formCloseButton.addEventListener(`click`, toggleForm)
 
 let library = []
 let index = 0
@@ -89,13 +84,15 @@ function addBookToLibrary(book) {
     createBookVisual(book)
 }
 
-formUploadButton.addEventListener(`click`, function(){
+formUploadButton.addEventListener(`click`, execute)
+
+function execute() {
     index++
     addBookToLibrary(createNewBook())
     titleField.value = ''
     pagesField.value = ''
     authorField.value = ''
-})
+}
 
 function remove(idxVal) {
     library = library.filter(item => item.indexVal != idxVal)
@@ -103,3 +100,11 @@ function remove(idxVal) {
     let ripDaddy = document.querySelector(`div[data-index="${idxVal}"]`);
     ripDaddy.parentElement.removeChild(ripDaddy)
 }
+
+window.addEventListener(`keydown`, function(e){
+    console.log(typeof(e.key))
+    if (e.key === `Enter`) {
+        execute()
+        toggleForm()
+    }
+})
