@@ -19,21 +19,22 @@ formCloseButton.addEventListener(`click`, toggleForm)
 
 formUploadButton.addEventListener(`click`, execute)
 
-let library = []
 let index = 0
 
-// function Biblioteque() {
-//     this.bookcase = []
-//     this.add = function(book) {
-//         this.bookcase.push(book)
-//     },
-//     this.remove = function (){}
-// }
+function Biblioteque() {
+    this.bookcase = []
+    this.add = function(book) {
+        this.bookcase.push(book)
+        createBookVisual(book)
+    },
+    this.remove = function remove(idxVal) {
+        this.bookcase = this.bookcase.filter(item => item.indexVal != idxVal)
+        let ripDaddy = document.querySelector(`div[data-index="${idxVal}"]`);
+        ripDaddy.parentElement.removeChild(ripDaddy)
+    }
+}
 
-// let libraryOfDreams = new Biblioteque
-
-
-
+let libraryOfDreams = new Biblioteque
 
 function Book(title, author, pages, read, indexVal) {
     this.title = title
@@ -76,7 +77,7 @@ function createBookVisual(book){
         dltButton.innerHTML = `&times;`
         dltButton.dataset.index = index
         dltButton.addEventListener(`click`, function(e){
-            remove((e.target.attributes[`data-index`].nodeValue))
+            libraryOfDreams.remove((e.target.attributes[`data-index`].nodeValue))
         })  
 
     frame.appendChild(ttl)
@@ -89,28 +90,13 @@ function createBookVisual(book){
     libraryDaddy.appendChild(frame)
 }
 
-function addBookToLibrary(book) {
-    library.push(book)
-    createBookVisual(book)
-}
-
-
 function execute() {
     index++
     let newBook = new Book(`${titleField.value}`, `${authorField.value}`, pagesField.value, readField.checked, index)
 
-    addBookToLibrary(newBook)
+    libraryOfDreams.add(newBook)
 
-    titleField.value = ''
-    pagesField.value = ''
-    authorField.value = ''
-}
-
-function remove(idxVal) {
-    library = library.filter(item => item.indexVal != idxVal)
-
-    let ripDaddy = document.querySelector(`div[data-index="${idxVal}"]`);
-    ripDaddy.parentElement.removeChild(ripDaddy)
+    titleField.value = pagesField.value = authorField.value = ''
 }
 
 window.addEventListener(`keydown`, function(e){
@@ -120,4 +106,3 @@ window.addEventListener(`keydown`, function(e){
         toggleForm()
     }
 })
-
