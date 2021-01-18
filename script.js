@@ -1,10 +1,8 @@
 const addButtons = document.querySelectorAll(`.upload-button`)
 const libraryDaddy = document.querySelector(`.library-daddy`)
-
 const formPopUp = document.querySelector(`.form-popup`)
 const formCloseButton = document.querySelector(`#form-close-btn`)
 const formUploadButton = document.querySelector(`#form-upload`)
-
 const titleField = document.querySelector(`#title-input`)
 const authorField = document.querySelector(`#author-input`)
 const pagesField = document.querySelector(`#pages-input`)
@@ -16,7 +14,6 @@ function toggleForm() {
 
 addButtons.forEach(element => element.addEventListener(`click`, toggleForm))
 formCloseButton.addEventListener(`click`, toggleForm)
-
 formUploadButton.addEventListener(`click`, execute)
 
 let index = 0
@@ -93,16 +90,11 @@ function createBookVisual(book){
 function execute() {
     index++
     let newBook = new Book(`${titleField.value}`, `${authorField.value}`, pagesField.value, readField.checked, index)
-
     libraryOfDreams.add(newBook)
-
     titleField.value = pagesField.value = authorField.value = ''
 }
 
 window.addEventListener(`keydown`, function(e){
     console.log(typeof(e.key))
-    if (e.key === `Enter`) {
-        execute()
-        toggleForm()
-    }
+    if (e.key === `Enter`) { execute(), toggleForm()}
 })
