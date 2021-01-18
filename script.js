@@ -22,15 +22,15 @@ formUploadButton.addEventListener(`click`, execute)
 let library = []
 let index = 0
 
-function Biblioteque() {
-    this.bookcase = []
-    this.add = function(book) {
-        this.bookcase.push(book)
-    },
-    this.remove = function
-}
+// function Biblioteque() {
+//     this.bookcase = []
+//     this.add = function(book) {
+//         this.bookcase.push(book)
+//     },
+//     this.remove = function (){}
+// }
 
-let libraryOfDreams = new Biblioteque
+// let libraryOfDreams = new Biblioteque
 
 
 
@@ -100,7 +100,6 @@ function execute() {
     let newBook = new Book(`${titleField.value}`, `${authorField.value}`, pagesField.value, readField.checked, index)
 
     addBookToLibrary(newBook)
-    libraryOfDreams.add(newBook)
 
     titleField.value = ''
     pagesField.value = ''
