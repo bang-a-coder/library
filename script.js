@@ -18,13 +18,17 @@ formUploadButton.addEventListener(`click`, execute)
 
 let index = 0
 
-function Biblioteque() {
-    this.bookcase = []
-    this.add = function(book) {
+class Biblioteque{
+    constructor(){
+        this.bookcase = []
+    }
+
+    add(book){
         this.bookcase.push(book)
         createBookVisual(book)
-    },
-    this.remove = function remove(idxVal) {
+    }
+
+    remove(idxVal) {
         this.bookcase = this.bookcase.filter(item => item.indexVal != idxVal)
         let ripDaddy = document.querySelector(`div[data-index="${idxVal}"]`);
         ripDaddy.parentElement.removeChild(ripDaddy)
@@ -33,12 +37,14 @@ function Biblioteque() {
 
 let libraryOfDreams = new Biblioteque
 
-function Book(title, author, pages, read, indexVal) {
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.read = read
-    this.indexVal = indexVal
+class Book {
+    constructor(title, author, pages, read, indexVal){
+        this.title = title
+        this.author = author
+        this.pages = pages
+        this.read = read
+        this.indexVal = indexVal
+    }
 }
 
 function createBookVisual(book){
